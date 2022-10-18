@@ -15,7 +15,10 @@
     
 </head>
 <body>
-    <div id="header">Ma boutique php</div>
+    <div id="header"><?php 
+    $date = date('h:i');
+    echo $date;
+    ?></div>
 
    <nav class="navbar navbar-inverse" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
