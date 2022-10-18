@@ -20,7 +20,7 @@
     <div id="wrapper">
         <?php
           //creation de l'array vide
-        include('include/produit/produit.php');?>
+        include('include/wrapper.php');?>
     </div>
     <?php include('include/footer.html');?>
 </body>
