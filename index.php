@@ -15,13 +15,13 @@
     
 </head>
 <body>
-    <?php include('include/header.html'); ?>
-    <?php include('include/navbar.php'); ?>
+    <?php include('pages/common/header.html'); ?>
+    <?php include('pages/common/navbar.php'); ?>
     <div id="wrapper">
         <?php
           //creation de l'array vide
-        include('include/wrapper.php');?>
+        include('pages/wrapper.php');?>
     </div>
-    <?php include('include/footer.html');?>
+    <?php include('pages/common/footer.html');?>
 </body>
 </html>

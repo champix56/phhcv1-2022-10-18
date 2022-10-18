@@ -6,8 +6,8 @@
     //choix de la page a inclure
     switch($_GET['page'])
     {
-        case 'produit':include('pages/produit/produit.php');break;
-        case 'produits':include('pages/produits/produits.php');break;
-        default : include('pages/home.html');break;
+        case 'produit':include('produit/produit.php');break;
+        case 'produits':include('produits/produits.php');break;
+        default : include('home/home.html');break;
     }
 ?>
