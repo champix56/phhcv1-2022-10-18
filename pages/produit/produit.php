@@ -1,4 +1,9 @@
 <!-- vue d'un produit -->
+<?php
+    include_once('produit.functions.php');
+    $produit=getProduit(1);
+    var_dump($produit);
+?>
 <div id="produit-unique">
     <h2>TITRE DU PRODUIT</h2>
     <hr/>
