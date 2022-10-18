@@ -1,7 +1,8 @@
 <!-- vue d'un produit -->
 <?php
     include_once('produit.functions.php');
-    $produit=getProduit(1);
+    if(isset($_GET['idp'])){
+    $produit=getProduit($_GET['idp']);
     var_dump($produit);
 ?>
 <div id="produit-unique">
@@ -23,3 +24,4 @@
         </div>
     </div>
 </div>
+<?php } ?>
