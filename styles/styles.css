@@ -1,0 +1,17 @@
+body{height: 99vh;}
+#wrapper{height:100%;overflow-y: auto;}
+/**
+    common layouts
+**/
+.horizontal-layout{display:flex;}
+/**
+    un produit unique 
+    produit/produit.php
+**/
+#produit-unique hr{margin:5px 15%; }
+#produit-unique{border-bottom: 2px double grey; }
+.produit-unique-image{min-width: 300px;max-width: 30%;min-height:60vh; text-align: center;padding: 10px 20px;}
+.produit-unique-image>*{vertical-align: middle;}
+.produit-unique-center{flex-grow: 1;padding: 10px 30px;}
+.produit-unique-center h3{text-decoration:underline;}
+.produit-unique-buttons{display:flex;flex-direction:column; justify-content: space-around;padding: 10px 10px;}
