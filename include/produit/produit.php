@@ -1,3 +1,4 @@
+
 <div id="produit-unique">
     <h2>TITRE DU PRODUIT</h2>
     <hr/>
@@ -12,6 +13,7 @@
         </div>
         <div class="produit-unique-buttons">
             <button type="button" class="btn btn-info">Ajouter</button>
+            <button type="button" class="btn btn-warning">Editer</button>
         </div>
     </div>
 </div>
