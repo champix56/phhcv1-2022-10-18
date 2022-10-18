@@ -4,7 +4,7 @@
     <hr/>
     <div class="horizontal-layout">
         <div class="produit-unique-image">
-            <img src="#" class="img-responsive" alt="Image">
+            <img src="https://lapierre-shopware.accell.cloud/thumbnail/64/bb/9f/1648474576/E-Sensium%202.2%20MY21%20Web%20-%20View%20PNG_800x800.png" class="img-responsive" alt="Image">
         </div>
         <div class="produit-unique-center">
             <h3>Description :</h3>
