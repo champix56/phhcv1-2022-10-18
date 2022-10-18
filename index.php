@@ -11,14 +11,16 @@
    <link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
    <script src="//code.jquery.com/jquery.js"></script>
    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-   
+   <link rel="stylesheet" href="styles/styles.css">
     
 </head>
 <body>
     <?php include('include/header.html'); ?>
     <?php include('include/navbar.php'); ?>
     <div id="wrapper">
-        <?php include('include/produits/produits.php');?>
+        <?php
+          //creation de l'array vide
+        include('include/produit/produit.php');?>
     </div>
     <?php include('include/footer.html');?>
 </body>
