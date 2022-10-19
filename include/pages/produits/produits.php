@@ -3,7 +3,8 @@
 <?php
 include_once 'produits.functions.php ';
 if(isset($_GET['idcat'])){
-    ?><h4>categorie : rtyuikl</h4><?php
+    $cat =getCategorie($_GET['idcat']);
+    echo '<h4>categorie : '.$cat['nom'].'</h4>';
     $produits = getProduits($_GET['idcat']);
 }
 else{
