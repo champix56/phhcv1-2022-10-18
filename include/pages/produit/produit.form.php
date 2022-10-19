@@ -1,3 +1,6 @@
+<?php
+    var_dump($_POST);
+?>
 <div id="produit-form" style=";padding:5px 25px;">
     <h2>Edition produit</h2>
     <form action="" method="POST">
