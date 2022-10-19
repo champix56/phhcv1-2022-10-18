@@ -1,3 +1,4 @@
+<h2>Liste des catégories</h2><hr/>
 <div id="categories-liste">
     <?php
 include_once 'categories.functions.php';
