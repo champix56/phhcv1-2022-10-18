@@ -24,3 +24,8 @@ body{height: 98vh;}
 .produit-liste-image{padding: 5px 10px;text-align: center;width:300px}
 .produit-liste-image>img{height:128px; max-width: 256px; size:auto;}
 .produit-liste-buttons{text-align: center;}
+/**
+    liste des categories
+**/ 
+#categories-liste{display: flex;justify-content: space-evenly;}
+.categories-liste-categorie{width:200px; height: 130px; border-radius: 8px;border:2px solid skyblue;text-align: center;padding:5px 15px;}
