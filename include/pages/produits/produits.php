@@ -2,12 +2,16 @@
 <hr/>
 <?php
 include_once 'produits.functions.php ';
-if(isset($_GET['idcat'])){
-    $cat =getCategorie($_GET['idcat']);
-    echo '<h4>categorie : '.$cat['nom'].'</h4>';
-    $produits = getProduits($_GET['idcat']);
-}
-else{
+if (isset($_GET['idcat'])) {
+    $cat = getCategorie($_GET['idcat']);
+    if ($cat != null) {
+        echo '<h4>categorie : ' . $cat['nom'] . '</h4>';
+        $produits = getProduits($_GET['idcat']);
+    } else {
+        echo '<h4>categorie : innexistante</h4>';
+        $produits = getProduits();
+    }
+} else {
     $produits = getProduits();
 }
 //var_dump($produits);
