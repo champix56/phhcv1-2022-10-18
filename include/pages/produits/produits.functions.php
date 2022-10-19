@@ -8,7 +8,7 @@ function getProduits($idCategorie = null)
     if ($idCategorie != null && is_numeric($idCategorie)) {
         $req = $req . " AND C.`id`=" . $idCategorie;
     }
-    var_dump($req);
+    //var_dump($req);
     $result = mysqli_query($mysqli, $req);
     $produits = [];
     while ($assoc = mysqli_fetch_assoc($result)) {
