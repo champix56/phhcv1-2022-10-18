@@ -1,10 +1,14 @@
 <h2>Liste des produits</h2>
 <hr/>
 <?php
-
 include_once 'produits.functions.php ';
-
-$produits = getProduits();
+if(isset($_GET['idcat'])){
+    ?><h4>categorie : rtyuikl</h4><?php
+    $produits = getProduits($_GET['idcat']);
+}
+else{
+    $produits = getProduits();
+}
 //var_dump($produits);
 
 ?>
