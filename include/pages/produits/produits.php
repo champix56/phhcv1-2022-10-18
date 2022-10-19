@@ -25,8 +25,8 @@ for ($i = 0; $i < count($produits); $i++) {
                 <td class="produit-liste-image"><img src="<?=$pr['image']?>" alt=""></td>
                 <td class="produit-liste-nom"><?=$pr['pnom']?></td>
                 <td class="produit-liste-prix"><?php echo $pr['prix']; ?>€</td>
-                <td>
-                    <button type="button" class="btn btn-warning">add</button><br/>
+                <td class="produit-liste-buttons">
+                    <button type="button" class="btn btn-warning">add</button>
                     <button type="button" class="btn btn-primary">voir</button>
                 </td>
             </tr>
