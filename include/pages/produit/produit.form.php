@@ -25,6 +25,7 @@
                 <img src="" alt="" id="imageProduit">
             </div>
         </div>
+        <hr/>
         <div style="display:flex;justify-content:space-between;">
             <button type="reset" class="btn btn-warning">reset</button>
             <button type="submit" class="btn btn-info">valider</button>
