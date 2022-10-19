@@ -5,7 +5,7 @@
 include_once 'produits.functions.php ';
 
 $produits = getProduits();
-var_dump($produits);
+//var_dump($produits);
 
 ?>
 <table class="produit-liste">
@@ -23,7 +23,7 @@ for ($i = 0; $i < count($produits); $i++) {
     $pr = $produits[$i];
     ?><tr>
                 <td class="produit-liste-image"><img src="<?=$pr['image']?>" alt=""></td>
-                <td class="produit-liste-nom"><?=$pr['nom']?></td>
+                <td class="produit-liste-nom"><?=$pr['pnom']?></td>
                 <td class="produit-liste-prix"><?php echo $pr['prix']; ?>€</td>
                 <td>
                     <button type="button" class="btn btn-warning">add</button><br/>
