@@ -16,3 +16,10 @@ body{height: 98vh;}
 .produit-unique-center h3{text-decoration:underline;}
 .produit-unique-prix{padding-top: 20px;font-weight:900; font-size: xx-large; color: skyblue;}
 .produit-unique-admin-buttons{display:flex;flex-direction:column; justify-content: space-around;padding: 10px 10px;}
+/**
+    liste produits
+**/
+.produit-liste{width:80%;margin-left:10%;}
+.produit-liste th{text-align: center;}
+.produit-liste-image{padding: 5px 10px;text-align: center;width:300px}
+.produit-liste-image>img{height:128px; max-width: 256px; size:auto;}
