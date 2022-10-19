@@ -13,7 +13,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
-            <li class="active"><a href="?page=produit&idp=1">produit/1</a></li>
+            <li class="active"><a href="?page=categories">categories</a></li>
             <li><a href="?page=produits">produits</a></li>
         </ul>
         <form class="navbar-form navbar-left" role="search">
