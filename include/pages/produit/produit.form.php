@@ -1,6 +1,6 @@
 <div id="produit-form" style=";padding:5px 25px;">
     <h2>Edition produit</h2>
-    <form action="" method="GET">
+    <form action="" method="POST">
         id:XXX<br/>
         <label for="nomProduit">Nom produit :</label>
         <input type="text" name="nomProduit" id="i_nomProduit"><br/>
