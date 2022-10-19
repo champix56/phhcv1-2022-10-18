@@ -1,5 +1,5 @@
 <?php
-include_once 'include/functions/sql.php'
+include_once 'include/functions/sql.php';
 /**
  * fonction pour recuperer un tableau de categories
  */
@@ -9,7 +9,7 @@ function getCategories(){
     //requete
     $req="SELECT `id`,`nom` FROM `categories`";
     //query
-    $result = mysql_query($mysql,$req);
+    $result = mysqli_query($mysqli,$req);
     //creer tableau
     $return_tab=[];
     //pour chaque  fetch_assoc pousser la ligne dans le tableau
