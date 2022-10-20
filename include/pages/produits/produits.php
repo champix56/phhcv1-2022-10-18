@@ -35,7 +35,7 @@ for ($i = 0; $i < count($produits); $i++) {
                 <td class="produit-liste-nom"><?=$pr['pnom']?></td>
                 <td class="produit-liste-prix"><?php echo $pr['prix']; ?>€</td>
                 <td class="produit-liste-buttons">
-                    <button type="button" class="btn btn-warning">add</button>
+                <a href="?action=edit&page=produit&idp=<?=$pr['pid']?>"><button type="button" class="btn btn-warning">edit</button></a>
                     <a href="?page=produit&idp=<?=$pr['pid']?>"><button type="button" class="btn btn-primary">voir</button></a>
                 </td>
             </tr>
