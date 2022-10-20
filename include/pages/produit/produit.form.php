@@ -1,34 +1,59 @@
 <?php
-    var_dump($_POST);
+var_dump($_POST);
+include_once 'produit.functions.php';
+$produit = null;
+if (isset($_GET['idp'])) {
+    $produit = getProduit($_GET['idp']);
+}
 ?>
 <div id="produit-form" style=";padding:5px 25px;">
     <h2>Edition produit</h2>
     <form action="" method="POST">
-        id:XXX<br/>
+        <?php
+if ($produit != null) {echo 'id:' . $produit['id'] . '<br/>';}
+?>
+        <input type="hidden" name="idProduit" value="<?=($produit != null) ? $produit['id'] : ''?>">
         <label for="nomProduit">Nom produit :</label>
-        <input type="text" name="nomProduit" id="i_nomProduit"><br/>
+        <input type="text" name="nomProduit" id="i_nomProduit"
+            value="<?=($produit != null) ? $produit['nom'] : ''?>"><br />
         <label for="categorieProduit">Categorie</label>
         <select name="categorieProduit" id="i_categorieProduit">
-            <option value="">une categorie</option>
+            <?php
+include_once 'include/pages/categories/categories.functions.php';
+$categories = getCategories();
+foreach ($categories as $cat) {
+    echo '<option value="'.
+            $cat['id'].
+            '" '.
+            (($produit != null && $produit['id_categories']==$cat['id']) ? 'selected' : '').
+            '>' .
+            $cat['nom'] .
+            '</option>';
+}
+?>
         </select>
-        <hr/>
+        <hr />
         <div id="produit-form-content" style="display:flex">
             <div style="width:60%">
-                <label for="descriptionProduit">Description</label><br/>
-                <textarea name="descriptionProduit" id="i_descriptionProduit" cols="30" rows="10" style="margin-left:15%;width:70%;resize : none;"></textarea><br/>
-                <label for="eanProduit">barcode</label><br/>
-                <input type="text" name="eanProduit" id="i_eanProduit"><br/>
-                <label for="prixProduit">Prix</label><br/>
-                <input type="number" name="prixProduit" id="i_prixProduit" min="0.01" step="0.01">
-        </div>
+                <label for="descriptionProduit">Description</label><br />
+                <textarea name="descriptionProduit" id="i_descriptionProduit" cols="30" rows="10"
+                    style="margin-left:15%;width:70%;resize : none;"><?=($produit != null) ? $produit['description'] : ''?></textarea><br />
+                <label for="eanProduit">barcode</label><br />
+                <input type="text" name="eanProduit" id="i_eanProduit"
+                    value="<?=($produit != null) ? $produit['EAN'] : ''?>"><br />
+                <label for="prixProduit">Prix</label><br />
+                <input type="number" name="prixProduit" id="i_prixProduit" min="0.01" step="0.01"
+                    value="<?=($produit != null) ? $produit['prix'] : ''?>">
+            </div>
             <div style="flex-grow:1;padding:5px 15px;text-align:center">
-                <label for="urlImageProduit">url image</label><br/>
-                <input type="text" name="urlImageProduit" id="i_urlImageProduit" style="max-width:45vw;max-height:45vh;">
-                <hr/>
-                <img src="" alt="" id="imageProduit">
+                <label for="urlImageProduit">url image</label><br />
+                <input type="text" name="urlImageProduit" id="i_urlImageProduit" style="max-width:45vw;max-height:45vh;"
+                    value="<?=($produit != null) ? $produit['image'] : ''?>">
+                <hr />
+                <img src="<?=($produit != null) ? $produit['image'] : ''?>" alt="" id="imageProduit">
             </div>
         </div>
-        <hr/>
+        <hr />
         <div style="display:flex;justify-content:space-between;">
             <button type="reset" class="btn btn-warning">reset</button>
             <button type="submit" class="btn btn-info">valider</button>
