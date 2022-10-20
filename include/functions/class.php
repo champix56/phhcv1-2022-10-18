@@ -1,26 +1,35 @@
 <?php
 class Produit
 {
-    private $id;
-    private $nom;
+    protected $id;
+    protected $nom;
     private $prix;
     private $ean;
     private $image;
-
+    private $idcat;
     public $description;
     /**
      * Class constructor.
      */
-    public function __construct($id,$nom,$desc,$prix,$ean,$img)
+    public function __construct($id,$nom,$desc,$prix,$ean,$img,$idcat)
     {  
         //set d'une valeur interne
         $this->id=$id;  
         $this->nom=$nom;  
         $this->description=$desc;  
         $this->prix=$prix;  
+        $this->idcat=$idcat;  
         $this->img=$img;  
         $this->ean=$ean;  
-    }    
+    }   
+    public function setNom($value) {
+        $this->nom=$value;
+    } 
+    public function saveToDB(){}
+    protected function applyReduction($taux){
+        $this->prix*=$taux;
+    }
+    public function getId(){return $this->id;}
 }
 class ProduitPanier extends Produit
 {
@@ -28,10 +37,13 @@ class ProduitPanier extends Produit
     /**
      * Class constructor.
      */
-    public function __construct($id,$nom,$desc,$prix,$ean,$img,$qte=1)
+    public function __construct($id,$nom,$desc,$prix,$ean,$img,$idcat,$qte=1)
     {
-        parent::__construct($id,$nom,$desc,$prix,$ean,$img);
+        parent::__construct($id,$nom,$desc,$prix,$ean,$img,$idcat);
         $this->qte=$qte;
+    }
+    public static function getPanierProduitFromPanier(Produit $pr):PanierProduit{
+        return $pr;
     }
     public function getQte(){return $this->qte;}
     public function add($qte=1){
@@ -41,10 +53,16 @@ class ProduitPanier extends Produit
         if($this->qte>=$quantite)$this->qte -= $quantite;
         else $this->qte = 0;
     }
+    public function getNomAndID(){
+        return $this->id.':'.$this->nom;
+    }
+
+    //exposition protected
+    public function applyReduction($tx){parent::applyReduction($tx);}
 }
  
 class Panier{
-    private $produits;
+    private Array $produits;
     /**
      * Class constructor.
      */
@@ -54,9 +72,18 @@ class Panier{
     }
     public function addProduit(ProduitPanier $produit)
     {
-        array_push($this->produits,$produit);
+        $tabOfResponse=array_filter($this->produits,abc);
+        if(count($tabOfResponse)>=1){
+            $produitDuPanier=$tabOfResponse[0];
+            $produitDuPanier->add(1);
+        }
+        else{
+            array_push($this->produits,$produit);
+        }
     }
     //public function dumpPanier(){var_dump($this);}
 }
-
+function abc($item){
+    return $item->getId()==$produit->getId();
+}
 ?>
