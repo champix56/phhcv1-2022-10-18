@@ -11,14 +11,15 @@ function getProduit($id )
 function postProduit($idcat,$nom,$ean,$prix,$description,$img){
     global $mysqli;
    
-    $req="INSERT INTO `produits`(`id_categories`, `nom`, `EAN`, `prix`, `description`, `image`) VALUES ($idcat,'$nom','$ean',$prix,'$description','$img')";
+     $req="INSERT INTO `produits`(`id_categories`, `nom`, `EAN`, `prix`, `description`, `image`) VALUES ($idcat,'".addslashes($nom)."','".addslashes($ean)."',$prix,'".addslashes($description)."','$img')";
+//var_dump($req);
     $result=mysqli_query($mysqli,$req);
-    return $result;// mysqli_affected_rows($mysqli)>=1;//?true:false;
+    return mysqli_insert_id($mysqli);//$result;// mysqli_affected_rows($mysqli)>=1;//?true:false;
 }
 function putProduit($id,$idcat,$nom,$ean,$prix,$description,$img){
     global $mysqli;
-    $req="UPDATE `produits` SET `id_categories`=$idcat,`nom`='$nom',`EAN`='$ean',`prix`=$prix,`description`='$description',`image`='$img' WHERE `id`=$id";
-    var_dump($req);
+    $req="UPDATE `produits` SET `id_categories`=$idcat,`nom`='".addslashes($nom)."',`EAN`='".addslashes($ean)."',`prix`=$prix,`description`='".addslashes($description)."',`image`='$img' WHERE `id`=$id";
+    //var_dump($req);
     mysqli_query($mysqli,$req);
     /*
     $stmt = mysqli_prepare($mysqli, "UPDATE `produits` SET `id_categories`=?,`nom`=?,`EAN`=?,`prix`=?,`description`=?,`image`=? WHERE `id`=?");
