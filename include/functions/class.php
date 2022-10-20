@@ -72,18 +72,24 @@ class Panier{
     }
     public function addProduit(ProduitPanier $produit)
     {
-        $tabOfResponse=array_filter($this->produits,abc);
+        $tabOfResponse=array_filter($this->produits,function($item) use( $produit){
+            return $item->getId()==$produit->getId();
+        });
         if(count($tabOfResponse)>=1){
+            echo '<h2>present</h2>';
             $produitDuPanier=$tabOfResponse[0];
             $produitDuPanier->add(1);
+            var_dump($this->produits);
         }
         else{
+            echo '<h2>NON present</h2>';
+            
             array_push($this->produits,$produit);
+            var_dump($this->produits);
+
         }
     }
     //public function dumpPanier(){var_dump($this);}
 }
-function abc($item){
-    return $item->getId()==$produit->getId();
-}
+
 ?>
