@@ -28,7 +28,10 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Panier <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="#">Action</a></li>
-                    <li><?php include 'include/pages/widget_panier/widget_panier.html';?></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li><h3>Panier</h3></li>
+                    <li><?php include 'include/pages/widget_panier/widget_panier.php'; ?></li>
                 </ul>
             </li>
         </ul>
