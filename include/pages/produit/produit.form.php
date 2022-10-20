@@ -1,6 +1,20 @@
 <?php
 var_dump($_POST);
 include_once 'produit.functions.php';
+if(isset($_POST['idProduit'])){
+    //soumission du formulaire
+    if(is_numeric($_POST['idProduit']))
+    {
+        echo "<h1>updt</h1>";
+        putProduit($_POST['idProduit'],$_POST['categorieProduit'],$_POST['nomProduit'],$_POST['eanProduit'],$_POST['prixProduit'],$_POST['descriptionProduit'],$_POST['urlImageProduit']);
+    }
+    else{
+       postProduit($_POST['categorieProduit'],$_POST['nomProduit'],$_POST['eanProduit'],$_POST['prixProduit'],$_POST['descriptionProduit'],$_POST['urlImageProduit']);
+    }
+
+}
+
+
 $produit = null;
 if (isset($_GET['idp'])) {
     $produit = getProduit($_GET['idp']);
