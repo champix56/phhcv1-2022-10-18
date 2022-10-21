@@ -1,5 +1,4 @@
 <?php
-  session_start();
   var_dump($_SESSION);
   include_once 'include/functions/class.php';
   if(isset($_SESSION['panier']) && ($_SESSION['panier'] instanceof Panier) ){
@@ -24,24 +23,29 @@
     .w-panier-produit-buttons>button{padding: 0 5px;height: 20px; font-size: 8px;}
   </style>
   <div id="w-panier">
-    <div class="w-panier-produit">
+    <?php 
+    for ($i=0; $i <$_SESSION['panier']->length() ; $i++) { 
+      $pr=$_SESSION['panier']->getProduit($i);
+  ?>    
+      <div class="w-panier-produit">
       <table class="w-panier-produit-table">
         <tr>
-          <td><img class="w-panier-produit-img" src="https://www.huezbikehire.com/wp-content/uploads/2020/11/PINARELLO-F12-NOIR-BLANC-1.jpg" alt="" /></td>
+          <td><img class="w-panier-produit-img" src="<?=$pr->getImage()?>" alt="" /></td>
           <td class="w-panier-produit-content-body">
-            <div>nom</div>
-            <div class="qte">quantite x prix</div>
+            <div><?= $pr->getNom() ?></div>
+            <div class="qte"><?php echo  $pr->getQte().' x '.$pr->getPrix();?></div>
             <div class="w-panier-produit-buttons">
               <button type="button" class="btn btn-warning">-</button>
               <button type="button" class="btn btn-info">+</button>
             </div>
           </td>
-          <td>prix total</td>
+          <td><?=$pr->getQte()*$pr->getPrix();?>€</td>
         </tr>
       </table>
     </div>
+    <?php } ?>
     <hr />
-     <div class="w-panier-produit-total">Total : total</div>
+     <div class="w-panier-produit-total">Total : <?=$_SESSION['panier']->totalHT()?></div>
   
     <button type="button" class="btn btn-primary">valider</button>
   </div>
