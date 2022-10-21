@@ -5,7 +5,7 @@ include_once 'include/functions/class.php';
 echo 'Objet test';
 
 //$id,$nom,$desc,$prix,$ean,$img
-$pr1=new Produit(1,'produit 1','description',5.5,'3184587458','http://',1);
+$pr1=new Produit(2,'produit From produit','description',5.5,'3184587458','http://',1);
 //var_dump($pr1);
 //access des champs d'une instance
 //access public
@@ -35,7 +35,9 @@ var_dump($panier);
 $panier->addProduit($prPanier1);
 $panier->addProduit($prPanier1);
 $panier->addProduit($prPanier1);
-$panier->addProduit(ProduitPanier::convertProduit($pr1));
+$pr1P=ProduitPanier::convertProduit($pr1);
+var_dump($pr1P);
+$panier->addProduit($pr1P);
 var_dump(($panier));
 var_dump($panier->totalHT());
 $panier->removeProduit($prPanier1->getId());
