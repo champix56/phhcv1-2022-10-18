@@ -24,15 +24,15 @@ if(isset($_POST['idProduit'])){
     else{
        $pr=postProduit(
         new Produit($_POST['idProduit'],
-        $_POST['nomProduit'],
-        $_POST['descriptionProduit'],
-        $_POST['prixProduit'],
-        $_POST['eanProduit'],
-        ($uploadFileName!=null?$uploadFileName:''),
-        $_POST['categorieProduit'])
-    );
-    produit_updateImage($_FILES['imageProduit'],$pr);
-       header('Location:?page=produit&action=edit&idp='.$pr->getId());
+            $_POST['nomProduit'],
+            $_POST['descriptionProduit'],
+            $_POST['prixProduit'],
+            $_POST['eanProduit'],
+            ($uploadFileName!=null?$uploadFileName:''),
+            $_POST['categorieProduit'])
+        );
+        produit_updateImage($_FILES['imageProduit'],$pr);
+        header('Location:?page=produit&action=edit&idp='.$pr->getId());
     }
 }
 
