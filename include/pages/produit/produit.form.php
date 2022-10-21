@@ -5,10 +5,26 @@ if(isset($_POST['idProduit'])){
     //soumission du formulaire
     if(is_numeric($_POST['idProduit']))
     {
-        putProduit(new Produit($_POST['idProduit'],$_POST['nomProduit'],$_POST['descriptionProduit'],$_POST['prixProduit'],$_POST['eanProduit'],$_POST['urlImageProduit'],$_POST['categorieProduit']));
+        putProduit(
+            new Produit($_POST['idProduit'],
+            $_POST['nomProduit'],
+            $_POST['descriptionProduit'],
+            $_POST['prixProduit'],
+            $_POST['eanProduit'],
+            $_POST['urlImageProduit'],
+            $_POST['categorieProduit'])
+        );
     }
     else{
-       $pr=postProduit(new Produit($_POST['idProduit'],$_POST['nomProduit'],$_POST['descriptionProduit'],$_POST['prixProduit'],$_POST['eanProduit'],$_POST['urlImageProduit'],$_POST['categorieProduit']));
+       $pr=postProduit(
+        new Produit($_POST['idProduit'],
+        $_POST['nomProduit'],
+        $_POST['descriptionProduit'],
+        $_POST['prixProduit'],
+        $_POST['eanProduit'],
+        $_POST['urlImageProduit'],
+        $_POST['categorieProduit'])
+    );
        header('Location:?page=produit&action=edit&idp='.$pr->getId());
     }
 }
