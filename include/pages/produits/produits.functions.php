@@ -17,7 +17,7 @@ function getProduits($idCategorie = null)
             $as['description'],
             $as['prix'],
             $as['EAN'],
-            $as['img'],
+            $as['image'],
             $as['id_categories']);
         $returnedProducts->add($produit);
     }
