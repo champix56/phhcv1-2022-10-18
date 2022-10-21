@@ -1,20 +1,25 @@
 <?php
   var_dump($_SESSION);
   include_once 'include/functions/class.php';
-  include_once 'include/pages/produit.functions.php';
+  include_once 'include/pages/produit/produit.functions.php';
   if(isset($_SESSION['panier']) && ($_SESSION['panier'] instanceof Panier) ){
+    //echo '<h2>reopened</h2>';
     //on un panier de pret
   }
   else {
+    //echo '<h2>new</h2>';
+
     $_SESSION['panier']=new Panier();
   }
-
+  $panier=$_SESSION['panier'];
+//ajout au panier si action = add
   if(isset($_GET['action'])&& $_GET['action']=='add' && isset($_GET['idp'])){
-
-
+    $pr=ProduitPanier::convertProduit(getProduit($_GET['idp']));
+    $panier->addProduit($pr);
   }
-?>
+//var_dump($panier);
 
+?>
 <style>
     #w-panier {display: flex;flex-direction: column;padding: 5px;}
     .w-panier-produit {display: flex;}

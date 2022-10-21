@@ -133,7 +133,7 @@ class ProduitPanier extends Produit
     //exposition protected
     public function applyReduction($tx){parent::applyReduction($tx);}
     public static function convertProduit(Produit $pr) {
-        return new ProduitPanier($pr->getId(), $pr->nom,$pr->description,$pr->getPrix(),$pr->ean,$pr->img,$pr->idcat);
+        return new ProduitPanier($pr->getId(), $pr->nom,$pr->description,$pr->getPrix(),$pr->ean,$pr->image,$pr->idcat);
     } 
 }
  

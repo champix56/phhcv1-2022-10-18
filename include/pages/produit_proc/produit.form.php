@@ -5,7 +5,13 @@ if(isset($_POST['idProduit'])){
     //soumission du formulaire
     if(is_numeric($_POST['idProduit']))
     {
-        putProduit($_POST['idProduit'],$_POST['categorieProduit'],$_POST['nomProduit'],$_POST['eanProduit'],$_POST['prixProduit'],$_POST['descriptionProduit'],$_POST['urlImageProduit']);
+        putProduit($_POST['idProduit'],
+        $_POST['categorieProduit'],
+        $_POST['nomProduit'],
+        $_POST['eanProduit'],
+        $_POST['prixProduit'],
+        $_POST['descriptionProduit'],
+        $_POST['urlImageProduit']);
     }
     else{
        $id=postProduit($_POST['categorieProduit'],$_POST['nomProduit'],$_POST['eanProduit'],$_POST['prixProduit'],$_POST['descriptionProduit'],$_POST['urlImageProduit']);
