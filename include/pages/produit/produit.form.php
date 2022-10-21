@@ -3,17 +3,23 @@
 include_once 'produit.functions.php';
 if(isset($_POST['idProduit'])){
     //soumission du formulaire
+
+    //var_dump($_FILES); 
+    //var_dump($_FILES['imageProduit']['name']);
+    $uploadFileName=null;
+    
     if(is_numeric($_POST['idProduit']))
     {
-        putProduit(
-            new Produit($_POST['idProduit'],
+        $pr=new Produit($_POST['idProduit'],
             $_POST['nomProduit'],
             $_POST['descriptionProduit'],
             $_POST['prixProduit'],
             $_POST['eanProduit'],
-            $_POST['urlImageProduit'],
-            $_POST['categorieProduit'])
-        );
+            ($uploadFileName!=null?$uploadFileName:''),
+            $_POST['categorieProduit']);
+            //var_dump($pr);       
+        putProduit($pr);
+        produit_updateImage($_FILES['imageProduit'],$pr);
     }
     else{
        $pr=postProduit(
@@ -22,9 +28,10 @@ if(isset($_POST['idProduit'])){
         $_POST['descriptionProduit'],
         $_POST['prixProduit'],
         $_POST['eanProduit'],
-        $_POST['urlImageProduit'],
+        ($uploadFileName!=null?$uploadFileName:''),
         $_POST['categorieProduit'])
     );
+    produit_updateImage($_FILES['imageProduit'],$pr);
        header('Location:?page=produit&action=edit&idp='.$pr->getId());
     }
 }
@@ -37,7 +44,7 @@ if (isset($_GET['idp'])) {
 ?>
 <div id="produit-form" style="padding:5px 25px;">
     <h2>Edition produit</h2>
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data" >
         <?php
 if ($produit != null) {echo 'id:' . $produit->getId() . '<br/>';}
 ?>
@@ -76,8 +83,10 @@ foreach ($categories as $cat) {
             </div>
             <div style="flex-grow:1;padding:5px 15px;text-align:center">
                 <label for="urlImageProduit">url image</label><br />
-                <input type="text" name="urlImageProduit" id="i_urlImageProduit" style="max-width:45vw;max-height:45vh;"
-                    value="<?=($produit != null) ? $produit->getImage() : ''?>">
+                <?php /* <input type="text" name="urlImageProduit" id="i_urlImageProduit" style="max-width:45vw;max-height:45vh;"value="<?=($produit != null) ? $produit->getImage() : ''?>"> */?>
+                
+                <input type="file" name="imageProduit" id="i_ImageProduit">
+
                 <hr />
                 <img src="<?=($produit != null) ? $produit->getImage() : ''?>" alt="" id="imageProduit">
             </div>
