@@ -1,4 +1,5 @@
 <?php
+include_once 'include/functions/gd2Watermark.php';
 include_once 'include/functions/sql.php';
 include_once 'include/functions/class.php';
 function getProduit($id)
@@ -64,10 +65,14 @@ function produit_updateImage($file,Produit $pr) {
         
         $extfile=getFileExtension($file['name']);
         //echo 
-        $uploadFileName="img/produits/".$pr->getId().".".$extfile;
+        $uploadFileName="img/produits/".$pr->getId()."w.".$extfile;
+        $uploadUnWatermarkedFileName="img/produits/".$pr->getId()."big.".$extfile;
         
         var_dump( $_FILES['imageProduit']);
-        if(move_uploaded_file($file['tmp_name'],$uploadFileName)){
+        if(move_uploaded_file($file['tmp_name'],$uploadFileName) && copy($uploadFileName,$uploadUnWatermarkedFileName)){
+            reScaleImage($uploadFileName, 2400, 1800);
+            watermark('img/watermarkLogo.png', $uploadFileName);
+            reScaleImage($uploadFileName, 600, 400);
             global $mysqli;
             echo 
             $req="UPDATE `produits` SET `image`='$uploadFileName' WHERE `id`=".$pr->getId();
