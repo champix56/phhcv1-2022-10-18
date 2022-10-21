@@ -1,11 +1,17 @@
 <?php
   var_dump($_SESSION);
   include_once 'include/functions/class.php';
+  include_once 'include/pages/produit.functions.php';
   if(isset($_SESSION['panier']) && ($_SESSION['panier'] instanceof Panier) ){
     //on un panier de pret
   }
   else {
     $_SESSION['panier']=new Panier();
+  }
+
+  if(isset($_GET['action'])&& $_GET['action']=='add' && isset($_GET['idp'])){
+
+
   }
 ?>
 
@@ -47,6 +53,6 @@
     <hr />
      <div class="w-panier-produit-total">Total : <?=$_SESSION['panier']->totalHT()?></div>
   
-    <button type="button" class="btn btn-primary">valider</button>
+    <button type="button" class="btn btn-primary">valider<br/>panier</button>
   </div>
   
