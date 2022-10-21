@@ -30,6 +30,7 @@ class Produit
         $this->prix*=$taux;
     }
     public function getId(){return $this->id;}
+    public function getPrix(){return $this->prix;}
 }
 class ProduitPanier extends Produit
 {
@@ -69,23 +70,44 @@ class Panier{
     }
     public function addProduit(ProduitPanier $produit)
     {
-        $tabOfResponse=array_filter($this->produits,function($item) use ($produit){
+        $tabOfResponse=array_filter($this->produits,function($item) use($produit) {
             return $item->getId()==$produit->getId();
         });
         if(count($tabOfResponse)>=1){
-            echo '<h2>present</h2>';
+            //echo '<h2>present</h2>';
             $produitDuPanier=$tabOfResponse[0];
             $produitDuPanier->add(1);
-            var_dump($this->produits);
+            //var_dump($this->produits);
         }
         else{
-            echo '<h2>NON present</h2>';
+            //echo '<h2>NON present</h2>';
             array_push($this->produits,$produit);
-            var_dump($this->produits);
+            //var_dump($this->produits);
 
         }
     }
-    //public function dumpPanier(){var_dump($this);}
+    public function removeProduit($id)
+    {
+        $respTab=array_filter($this->produits,function ($item)use ($id) {
+        return $item->getId()==$id;
+        });
+        if(count($respTab)>0 && $respTab[0]->getQte()>1){
+            $respTab[0]->remove();
+        }
+        else if(count($respTab)>0){
+            $position=array_search($respTab[0],$this->produits);
+            array_splice($this->produits,$position,1);
+        }
+         
+    }
+    public function totalHT()
+    {
+        $total=0;
+       foreach ($this->produits as $pr) {
+        $total+=($pr->getQte()*$pr->getPrix());
+       }
+        return $total;
+    }
 }
 
 ?>
