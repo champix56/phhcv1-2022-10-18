@@ -5,7 +5,7 @@ include_once 'include/functions/class.php';
 echo 'Objet test';
 
 //$id,$nom,$desc,$prix,$ean,$img
-$pr1=new Produit(1,'produit 1','description',5.5,'3184587458','http://',1);
+$pr1=new Produit(3,'produit','description',5.5,'3184587458','http://',1);
 var_dump($pr1);
 //access des champs d'une instance
 //access public
@@ -13,7 +13,7 @@ $pr1->description="Nouvelle description de pr1";
 // impossible car privée ---->   $pr1->nom='nouveau nom';
 //usage du setter
 $pr1->setNom('nouveau nom de produit');
-var_dump($pr1);
+// var_dump();
 
 
 /**produit panier */
@@ -30,10 +30,11 @@ $prPanier1->applyReduction(0.2);
 var_dump($prPanier1);
 
 
+
+
 $panier=new Panier();
 $panier->addProduit($prPanier1);
 $panier->addProduit($prPanier1);
-//$panier->removeProduit($prPanier1);
 var_dump($panier);
 
 ?>

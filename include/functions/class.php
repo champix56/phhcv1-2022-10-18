@@ -1,12 +1,12 @@
 <?php
 class Produit
 {
-    protected $id;
+    private $id;
     protected $nom;
-    private $prix;
-    private $ean;
-    private $image;
-    private $idcat;
+    protected $prix;
+    protected $ean;
+    protected $image;
+    protected $idcat;
     public $description;
     /**
      * Class constructor.
@@ -42,8 +42,8 @@ class ProduitPanier extends Produit
         parent::__construct($id,$nom,$desc,$prix,$ean,$img,$idcat);
         $this->qte=$qte;
     }
-    public static function getPanierProduitFromPanier(Produit $pr):PanierProduit{
-        return $pr;
+    public static function fromProduit(Produit $pr){
+        return new ProduitPanier($pr->getId(),$pr->nom,$pr->description,$pr->prix,$pr->ean,$pr->ean,$pr->image,$pr->idcat,1);
     }
     public function getQte(){return $this->qte;}
     public function add($qte=1){
@@ -54,7 +54,7 @@ class ProduitPanier extends Produit
         else $this->qte = 0;
     }
     public function getNomAndID(){
-        return $this->id.':'.$this->nom;
+        return $this->getId().':'.$this->nom;
     }
 
     //exposition protected
