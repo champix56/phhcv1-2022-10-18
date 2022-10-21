@@ -33,5 +33,6 @@ if(isset($_GET['disconnect'])){
         include('include/wrapper.php');?>
     </div>
     <?php include('include/footer.html');?>
+    <?php include('include/pages/widget_commande/widget_commande.php');?>
 </body>
 </html>
