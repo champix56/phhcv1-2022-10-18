@@ -4,9 +4,9 @@ class Produit
     protected $id;
     protected $nom;
     private $prix;
-    private $ean;
-    private $image;
-    private $idcat;
+    protected $ean;
+    protected $image;
+    protected $idcat;
     public $description;
     /**
      * Class constructor.
@@ -54,9 +54,11 @@ class ProduitPanier extends Produit
     public function getNomAndID(){
         return $this->id.':'.$this->nom;
     }
-
     //exposition protected
     public function applyReduction($tx){parent::applyReduction($tx);}
+    public static function convertProduit(Produit $pr) {
+        return new ProduitPanier($pr->getId(), $pr->nom,$pr->description,$pr->getPrix(),$pr->ean,$pr->img,$pr->idcat);
+    } 
 }
  
 class Panier{
@@ -109,5 +111,3 @@ class Panier{
         return $total;
     }
 }
-
-?>
