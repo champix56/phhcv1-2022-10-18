@@ -23,28 +23,41 @@ function getProduit($id)
 
 }
 
-function postProduit($idcat, $nom, $ean, $prix, $description, $img)
+function postProduit(Produit $pr)
 {
     global $mysqli;
 
-    $req = "INSERT INTO `produits`(`id_categories`, `nom`, `EAN`, `prix`, `description`, `image`) VALUES ($idcat,'" . addslashes($nom) . "','" . addslashes($ean) . "',$prix,'" . addslashes($description) . "','$img')";
-//var_dump($req);
+    $req = "INSERT INTO `produits`(
+        `id_categories`,
+        `nom`,
+        `EAN`,
+        `prix`,
+        `description`,
+        `image`)
+        VALUES ($pr->getIdcat(),
+        '" . addslashes($pr->getNom()) . "',
+        '" . addslashes($pr->getEAN()) . "',
+        $pr->getPrix(),
+        '" . addslashes($pr->description) . "',
+        '$pr->getImage()')";
+
     $result = mysqli_query($mysqli, $req);
-    return mysqli_insert_id($mysqli); //$result;// mysqli_affected_rows($mysqli)>=1;//?true:false;
+    $id= mysqli_insert_id($mysqli); //$result;// mysqli_affected_rows($mysqli)>=1;//?true:false;
+    $pr=new Produit($id,$pr->getNom(),$pr->description, $pr->getPrix,$pr->getEAN(),$pr->getImage(),$pr->getIdcat());
+    return $pr;
 }
-function putProduit($id, $idcat, $nom, $ean, $prix, $description, $img)
+function putProduit(Produit $pr)
 {
     global $mysqli;
-    $req = "UPDATE `produits` SET `id_categories`=$idcat,`nom`='" . addslashes($nom) . "',`EAN`='" . addslashes($ean) . "',`prix`=$prix,`description`='" . addslashes($description) . "',`image`='$img' WHERE `id`=$id";
-    //var_dump($req);
+    $req = "UPDATE `produits`
+    SET `id_categories`=$pr->getIdcat(),
+    `nom`='" . addslashes($pr->getNom()) . "',
+    `EAN`='" . addslashes($pr->getEAN()) . "',
+    `prix`=$pr->getPrix(),
+    `description`='" . addslashes($pr->description) . "',
+    `image`='$pr->getImage()'
+    WHERE `id`=$pr->getId()";
     mysqli_query($mysqli, $req);
-    /*
-    $stmt = mysqli_prepare($mysqli, "UPDATE `produits` SET `id_categories`=?,`nom`=?,`EAN`=?,`prix`=?,`description`=?,`image`=? WHERE `id`=?");
-    mysqli_stmt_bind_param($stmt, 'issfssi',$idcat,$nom,$ean,$prix,$description,$img,$id);
-    mysqli_stmt_execute($stmt);
-     */
-
-    //$result=mysqli_execute_query($mysqli,$req,[$idcat,$nom,$ean,$prix,$description,$img,$id]);
-
+   
     return mysqli_affected_rows($mysqli) == 1;
 }
