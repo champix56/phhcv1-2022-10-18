@@ -18,7 +18,7 @@ function getProduit($id)
         $sqlVal['description'],
         $sqlVal['prix'],
         $sqlVal['EAN'],
-        $sqlVal['img'],
+        $sqlVal['image'],
         $sqlVal['id_categories']);
 
 }
