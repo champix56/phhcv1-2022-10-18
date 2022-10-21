@@ -1,31 +1,37 @@
 <?php
 include_once 'include/functions/sql.php';
+include_once 'include/functions/class.php';
 function getProduits($idCategorie = null)
 {
     global $mysqli;
-    // $mysqli = mysqli_connect("localhost:3307", "root", "", "phh-22-10-18");
-    $req = "SELECT P.`id` AS `pid`, `id_categories`, P.`nom` AS `pnom`, `EAN`, `prix`, `description`, `image`, C.`nom` AS `cnom` FROM `produits` P, `categories` C WHERE P.`id_categories` = C.`id`";
+    $returnedProducts = new Produits();
+    $req = "SELECT `id`  , `id_categories`, `nom`  , `EAN`, `prix`, `description`, `image` FROM `produits`";
     if ($idCategorie != null && is_numeric($idCategorie)) {
-        $req = $req . " AND C.`id`=" . $idCategorie;
+        $req = $req . " WHERE  `id_categories`=" . $idCategorie;
     }
-    //var_dump($req);
     $result = mysqli_query($mysqli, $req);
-    $produits = [];
-    while ($assoc = mysqli_fetch_assoc($result)) {
-        array_push($produits, $assoc);
-        // eq. $produits[]=$assoc;
+
+    while ($as = mysqli_fetch_assoc($result)) {
+        $produit = new Produit($as['id'],
+            $as['nom'],
+            $as['description'],
+            $as['prix'],
+            $as['EAN'],
+            $as['img'],
+            $as['id_categories']);
+        $returnedProducts->add($produit);
     }
-    return $produits;
+    return $returnedProducts;
 }
 function getCategorie($idcat)
 {
     global $mysqli;
     if (is_numeric($idcat)) {
-        $req = "SELECT id,nom FROM categories WHERE id=" . $idcat;
+        $req = "SELECT id,nom,tva FROM categories WHERE id=" . $idcat;
         $result = mysqli_query($mysqli, $req);
-        return mysqli_fetch_assoc($result);
-    }else{
-        return NULL;
+        $sqlValues = mysqli_fetch_assoc($result);
+        return new Categorie($sqlValues['id'], $sqlValues['nom'], $sqlValues['tva']);
+    } else {
+        return null;
     }
-
 }

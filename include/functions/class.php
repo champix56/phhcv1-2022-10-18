@@ -26,7 +26,41 @@ class Produits
         return (count($resultTab)>0?$resultTab:null);
     }
 }
-
+class Categories
+{
+    private $_categories=[];
+    /**
+     * Class constructor.
+     */
+    public function __construct()
+    {
+         
+    }
+    public  function add(Categorie $ca)
+    {
+        array_push($this->_produits,$ca);
+    }
+    public function getById($id){
+        $resultTab=array_filter($this->_categories,function($item)use($id){
+            return $item->id()==$id;
+        });
+        return (count($resultTab)>0?$resultTab[0]:null);
+    }
+}
+class Categorie{
+    public $id;
+    public $nom;
+    public $tva;
+    /**
+     * Class constructor.
+     */
+    public function __construct($id,$nom,$tva)
+    {
+        $this->id = $id;
+        $this->nom = $nom;
+        $this->tva = $tva;
+    }
+}
 class Produit
 {
     protected $id;
