@@ -14,8 +14,8 @@ if (isset($_GET['idcat'])) {
 } else {
     $produits = getProduits();
 }
-var_dump($produits);
-var_dump($cat);
+// var_dump($produits);
+// var_dump($cat);
 
 ?>
 <table class="produit-liste">
@@ -29,15 +29,19 @@ var_dump($cat);
     </thead>
     <tbody>
        <?php
-for ($i = 0; $i < count($produits); $i++) {
-    $pr = $produits[$i];
+for ($i = 0; $i < $produits->length(); $i++) {
+    $pr = $produits->getProduit($i);
     ?><tr>
-                <td class="produit-liste-image"><img src="<?=$pr['image']?>" alt=""></td>
-                <td class="produit-liste-nom"><?=$pr['pnom']?></td>
-                <td class="produit-liste-prix"><?php echo $pr['prix']; ?>€</td>
+                <td class="produit-liste-image"><img src="<?=$pr->getImage()?>" alt=""></td>
+                <td class="produit-liste-nom"><?=$pr->getNom()?></td>
+                <td class="produit-liste-prix"><?php echo $pr->getPrix(); ?>€</td>
                 <td class="produit-liste-buttons">
-                <a href="?action=edit&page=produit&idp=<?=$pr['pid']?>"><button type="button" class="btn btn-warning">edit</button></a>
-                    <a href="?page=produit&idp=<?=$pr['pid']?>"><button type="button" class="btn btn-primary">voir</button></a>
+                    <a href="?action=edit&page=produit&idp=<?=$pr->getId()?>">
+                        <button type="button" class="btn btn-warning">edit</button>
+                    </a>
+                    <a href="?page=produit&idp=<?=$pr->getId()?>">
+                        <button type="button" class="btn btn-primary">voir</button>
+                    </a>
                 </td>
             </tr>
         <?php
