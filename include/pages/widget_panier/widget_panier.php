@@ -24,6 +24,16 @@
   if(isset($_GET['action'])&& $_GET['action']=='remove' && isset($_GET['idp'])){
     $panier->removeProduit($_GET['idp']);
   }
+  if(isset($_GET['action'])&& $_GET['action']=='validate_cart'){
+    $arr_date=getdate();
+    $fileName="commandesTXT/".$arr_date['hours']."-".$arr_date['minutes']."-".$arr_date['seconds'].".json";
+    
+   
+    $json=$panier->getJSON();
+    file_put_contents($fileName,$json);
+    $panier->clearPanier();
+  }
+
 //  var_dump($_SESSION);
 //var_dump($panier);
 
@@ -70,6 +80,6 @@
     <hr />
      <div class="w-panier-produit-total">Total : <?=$_SESSION['panier']->totalHT()?></div>
   
-    <button type="button" class="btn btn-primary">valider<br/>panier</button>
+    <a href="?action=validate_cart<?=isset($_GET['page'])?'&page='.$_GET['page']:''?>"><button type="button" class="btn btn-primary">valider<br/>panier</button></a>
   </div>
   

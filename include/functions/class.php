@@ -195,5 +195,16 @@ class Panier{
     {
         return $this->produits[$position];
     }
-   
+    public function clearPanier() {
+        $this->produits=[];
+    }
+    public function getJSON() {
+         $datas=[];
+        for ($i=0; $i <$this->length() ; $i++) { 
+          $pr=$this->getProduit($i);
+          $prForJson=["id"=>$pr->getId(),"nom"=>$pr->getNom(),"qte"=>$pr->getQte()];
+          array_push($datas,$prForJson);
+        }
+        return json_encode($datas);
+    }
 }
