@@ -146,6 +146,7 @@ class Panier{
     {
         $this->produits=[];
     }
+
     public function addProduit(ProduitPanier $produit)
     {
         $tabOfResponse=array_filter($this->produits,function($item) use($produit) {
@@ -186,4 +187,13 @@ class Panier{
        }
         return $total;
     }
+    public function length()
+    {
+        return count($this->produits);
+    }
+    public function getProduit($position)
+    {
+        return $this->produits[$position];
+    }
+   
 }
