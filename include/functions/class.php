@@ -1,4 +1,32 @@
 <?php
+class Produits
+{
+    private $_produits=[];
+    /**
+     * Class constructor.
+     */
+    public function __construct()
+    {
+         
+    }
+    public  function add(Produit $pr)
+    {
+        array_push($this->_produits,$pr);
+    }
+    public function getById($id){
+        $resultTab=array_filter($this->_produits,function($item)use($id){
+            return $item->getId()==$id;
+        });
+        return (count($resultTab)>0?$resultTab[0]:null);
+    }
+    public function filterByIdcat($idcat){
+        $resultTab=array_filter($this->_produits,function($item)use($idcat){
+            return $item->idcat()==$idcat;
+        });
+        return (count($resultTab)>0?$resultTab:null);
+    }
+}
+
 class Produit
 {
     protected $id;
@@ -21,7 +49,8 @@ class Produit
         $this->idcat=$idcat;  
         $this->img=$img;  
         $this->ean=$ean;  
-    }   
+    }
+    public function getIdcat(){return $this->idcat;}
     public function setNom($value) {
         $this->nom=$value;
     } 
