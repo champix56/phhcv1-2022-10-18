@@ -42,6 +42,9 @@ for ($i = 0; $i < $produits->length(); $i++) {
                     <a href="?page=produit&idp=<?=$pr->getId()?>">
                         <button type="button" class="btn btn-primary">voir</button>
                     </a>
+                    <a href="?action=add&page=produits&idp=<?=$pr->getId()?>">
+                        <button type="button" class="btn btn-info">ajout</button>
+                    </a>
                 </td>
             </tr>
         <?php
