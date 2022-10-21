@@ -62,8 +62,7 @@ function putProduit(Produit $pr)
 function produit_updateImage($file,Produit $pr) {
     if($_FILES['imageProduit']['size']>0){
         
-        $extfile=explode('.',$file['name']);
-        $extfile=$extfile[count($extfile)-1];
+        $extfile=getFileExtension($file['name']);
         //echo 
         $uploadFileName="img/produits/".$pr->getId().".".$extfile;
         
@@ -73,7 +72,16 @@ function produit_updateImage($file,Produit $pr) {
             echo 
             $req="UPDATE `produits` SET `image`='$uploadFileName' WHERE `id`=".$pr->getId();
             mysqli_query($mysqli,$req);
+
+            
         }
     }
+}
+function getFileExtension($str) {
+    $i = strrpos($str,".");
+    if (!$i) { return ""; }
+    $l = strlen($str) - $i;
+    $ext = substr($str,$i+1,$l);
+    return $ext;
 }
 ?>
