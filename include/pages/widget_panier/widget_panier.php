@@ -1,6 +1,13 @@
 <?php
   session_start();
   var_dump($_SESSION);
+  include_once 'include/functions/class.php';
+  if(isset($_SESSION['panier']) && ($_SESSION['panier'] instanceof Panier) ){
+    //on un panier de pret
+  }
+  else {
+    $_SESSION['panier']=new Panier();
+  }
 ?>
 
 <style>
