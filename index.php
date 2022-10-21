@@ -1,6 +1,11 @@
 <?php   
 include_once 'include/functions/class.php';
 session_start(); 
+
+if(isset($_GET['disconnect'])){
+    session_unset();
+    session_destroy();
+}
 ?>
 
 <!DOCTYPE html>

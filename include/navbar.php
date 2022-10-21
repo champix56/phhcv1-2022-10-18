@@ -27,9 +27,8 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Panier <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
+                    <li><a href="?connect">Connexion</a></li>
+                    <li><a href="?disconnect">Deconnexion</a></li>
                     <li><h3>Panier</h3></li>
                     <li><?php include 'include/pages/widget_panier/widget_panier.php'; ?></li>
                 </ul>
