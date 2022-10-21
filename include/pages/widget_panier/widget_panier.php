@@ -1,5 +1,4 @@
 <?php
-  var_dump($_SESSION);
   include_once 'include/functions/class.php';
   include_once 'include/pages/produit/produit.functions.php';
   if(isset($_SESSION['panier']) && ($_SESSION['panier'] instanceof Panier) ){
@@ -21,6 +20,11 @@
       $panier->addProduit($produitPanier);
     }
   }
+  //remove du panier
+  if(isset($_GET['action'])&& $_GET['action']=='remove' && isset($_GET['idp'])){
+    $panier->removeProduit($_GET['idp']);
+  }
+//  var_dump($_SESSION);
 //var_dump($panier);
 
 ?>
@@ -50,10 +54,10 @@
             <div><?= $pr->getNom() ?></div>
             <div class="qte"><?php echo  $pr->getQte().' x '.$pr->getPrix();?></div>
             <div class="w-panier-produit-buttons">
-              <a href="?action=remove&page=produits&idp=<?=$pr->getId()?>">
+              <a href="?action=remove<?=isset($_GET['page'])?'&page='.$_GET['page']:''?>&idp=<?=$pr->getId()?>">
                 <button type="button" class="btn btn-warning">-</button>
               </a>
-              <a href="?action=add&page=produits&idp=<?=$pr->getId()?>">
+              <a href="?action=add<?=isset($_GET['page'])?'&page='.$_GET['page']:''?>&idp=<?=$pr->getId()?>">
                 <button type="button" class="btn btn-info">+</button>
               </a>
             </div>
