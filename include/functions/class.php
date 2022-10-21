@@ -9,6 +9,14 @@ class Produits
     {
          
     }
+    /*danger car permet la manipulation (ajout suppr dans l'array)
+    // public function getProduits() {
+    //     return $this->_produits;
+    // }*/
+    public function length(){return count($this->_produits);}
+    public function getProduit($position){
+        return $this->_produits[$position];
+    }
     public  function add(Produit $pr)
     {
         array_push($this->_produits,$pr);
@@ -47,7 +55,8 @@ class Categories
         return (count($resultTab)>0?$resultTab[0]:null);
     }
 }
-class Categorie{
+class Categorie
+{
     public $id;
     public $nom;
     public $tva;
@@ -81,10 +90,9 @@ class Produit
         $this->description=$desc;  
         $this->prix=$prix;  
         $this->idcat=$idcat;  
-        $this->img=$img;  
+        $this->image=$img;  
         $this->ean=$ean;  
     }
-    public function getIdcat(){return $this->idcat;}
     public function setNom($value) {
         $this->nom=$value;
     } 
@@ -92,8 +100,13 @@ class Produit
     protected function applyReduction($taux){
         $this->prix*=$taux;
     }
+    /* accesseurs GET */
+    public function getIdcat(){return $this->idcat;}
     public function getId(){return $this->id;}
     public function getPrix(){return $this->prix;}
+    public function getImage(){return $this->image;}
+    public function getEAN(){return $this->ean;}
+    public function getNom(){return $this->nom;}
 }
 class ProduitPanier extends Produit
 {
